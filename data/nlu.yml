@@ -1,0 +1,117 @@
+version: "3.1"
+
+nlu:
+- intent: greet
+  examples: |
+    - hey
+    - hello
+    - hi
+    - hello there
+    - good morning
+    - good evening
+    - moin
+    - hey there
+    - let's go
+    - hey dude
+    - goodmorning
+    - goodevening
+    - good afternoon
+
+- intent: goodbye
+  examples: |
+    - cu
+    - good by
+    - cee you later
+    - good night
+    - bye
+    - goodbye
+    - have a nice day
+    - see you around
+    - bye bye
+    - see you later
+
+- intent: affirm
+  examples: |
+    - yes
+    - y
+    - indeed
+    - of course
+    - that sounds good
+    - correct
+
+- intent: deny
+  examples: |
+    - no
+    - n
+    - never
+    - I don't think so
+    - don't like that
+    - no way
+    - not really
+
+- intent: mood_great
+  examples: |
+    - perfect
+    - great
+    - amazing
+    - feeling like a king
+    - wonderful
+    - I am feeling very good
+    - I am great
+    - I am amazing
+    - I am going to save the world
+    - super stoked
+    - extremely good
+    - so so perfect
+    - so good
+    - so perfect
+
+- intent: mood_unhappy
+  examples: |
+    - my day was horrible
+    - I am sad
+    - I don't feel very well
+    - I am disappointed
+    - super sad
+    - I'm so sad
+    - sad
+    - very sad
+    - unhappy
+    - not good
+    - not very good
+    - extremly sad
+    - so saad
+    - so sad
+
+- intent: bot_challenge
+  examples: |
+    - are you a bot?
+    - are you a human?
+    - am I talking to a bot?
+    - am I talking to a human?
+
+- intent: get_animal_info
+  examples: |
+    - What information do you have on animal [12345](AnimalId)?
+    - Show me details about the animal with ID [67890](AnimalId).
+    - Tell me more about animal ID [54321](AnimalId).
+
+- intent: get_breeding_info
+  examples: |
+    - What are the breed details for animal [12345](AnimalId)?
+    - Show the genetic information for [AnimalId: 67890](AnimalId).
+    - Provide breeding info for animal [54321](AnimalId).
+
+- intent: get_age
+  examples: |
+    - How old is the animal with ID [12345](AnimalId)?
+    - What is the age of [67890](AnimalId)?
+    - Tell me the age of animal [54321](AnimalId).
+
+- intent: get_regional_data
+  examples: |
+    - Show data for animals in province [Rome](siglaProvincia).
+    - What information is available for ISTAT code [001](codiceIstat)?
+    - Get regional data for province [Naples](siglaProvincia).
+
+

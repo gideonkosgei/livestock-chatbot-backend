@@ -1,0 +1,50 @@
+version: "3.1"
+
+stories:
+
+- story: happy path
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: mood_great
+  - action: utter_happy
+
+- story: sad path 1
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: mood_unhappy
+  - action: utter_cheer_up
+  - action: utter_did_that_help
+  - intent: affirm
+  - action: utter_happy
+
+- story: sad path 2
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: mood_unhappy
+  - action: utter_cheer_up
+  - action: utter_did_that_help
+  - intent: deny
+  - action: utter_goodbye
+
+- story: get animal information
+  steps:
+    - intent: get_animal_info
+    - action: action_get_animal_info
+
+- story: get animal age
+  steps:
+    - intent: get_age
+    - action: action_get_age
+
+- story: get breeding information
+  steps:
+    - intent: get_breeding_info
+    - action: action_get_breeding_info
+
+- story: get regional data
+  steps:
+    - intent: get_regional_data
+    - action: action_get_regional_data
