@@ -1,0 +1,59 @@
+species,code,species_category
+Cattle,C1,Dairy Cattle
+Cattle,C2,Beef Cattle
+Cattle,C3,Crossbred Cattle
+Cattle,C4,Miniature Cattle
+Cattle,C5,Zebu Cattle
+Cattle,C6,Holstein
+Cattle,C7,Jersey
+Cattle,C8,Angus
+Cattle,C9,Hereford
+Cattle,C10,Guernsey
+Sheep,S1,Sheep (general)
+Sheep,S2,Ewe
+Sheep,S3,Ram
+Sheep,S4,Lamb
+Sheep,S5,Dorset
+Sheep,S6,Suffolk
+Sheep,S7,Merino
+Sheep,S8,Rambouillet
+Sheep,S9,Polypay
+Goats,G1,Goats (general)
+Goats,G2,Dairy Goats
+Goats,G3,Meat Goats
+Goats,G4,Fiber Goats
+Goats,G5,Nubian
+Goats,G6,Saanen
+Goats,G7,Boer
+Goats,G8,Angora
+Pigs,P1,Swine (general)
+Pigs,P2,Breeding Pigs
+Pigs,P3,Market Pigs
+Pigs,P4,Yorkshire
+Pigs,P5,Landrace
+Pigs,P6,Duroc
+Pigs,P7,Berkshire
+Pigs,P8,Hampshire
+Horses,H1,Horses (general)
+Horses,H2,Ponies
+Horses,H3,Draft Horses
+Horses,H4,Thoroughbred
+Horses,H5,Arabian
+Horses,H6,Quarter Horse
+Horses,H7,Standardbred
+Horses,H8,Appaloosa
+Poultry,P1,Chickens
+Poultry,P2,Turkeys
+Poultry,P3,Ducks
+Poultry,P4,Geese
+Poultry,P5,Guinea Fowl
+Poultry,P6,Quail
+Poultry,P7,Pigeons
+Other Species,O1,Alpacas
+Other Species,O2,Llamas
+Other Species,O3,Donkeys
+Other Species,O4,Mules
+Other Species,O5,Bison
+Other Species,O6,Deer
+Other Species,O7,Fish (Aquaculture)
+Other Species,O8,Other Livestock
