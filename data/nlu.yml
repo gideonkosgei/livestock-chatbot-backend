@@ -1,117 +1,154 @@
 version: "3.1"
 
 nlu:
-- intent: greet
-  examples: |
-    - hey
-    - hello
-    - hi
-    - hello there
-    - good morning
-    - good evening
-    - moin
-    - hey there
-    - let's go
-    - hey dude
-    - goodmorning
-    - goodevening
-    - good afternoon
+  - intent: request_breed_distribution
+    examples: |
+      - Show me the breed distribution
+      - I want to see breed distribution
+      - Can you provide breed distribution?
+      - What is the breed distribution?
+      - Show me the distribution of breeds.
+      - How are the breeds distributed?
 
-- intent: goodbye
-  examples: |
-    - cu
-    - good by
-    - cee you later
-    - good night
-    - bye
-    - goodbye
-    - have a nice day
-    - see you around
-    - bye bye
-    - see you later
+  - intent: specify_species
+    examples: |
+      - For [cattle](species)
+      - I want the distribution for [sheep](species)
+      - Show me for [Poultry](species)
+      - For [Horses](species)
+      - For [Goats](species)
+      - For [Pigs](species)  
+      - For [nan](species)
 
-- intent: affirm
-  examples: |
-    - yes
-    - y
-    - indeed
-    - of course
-    - that sounds good
-    - correct
+  - intent: specify_province
+    examples: |
+      - location should be in [Agrigento](province)
+      - location should be in [Alessandria](province)
+      - location should be in [Ancona](province)
+      - location should be in [Aosta](province)
+      - location should be in [Arezzo](province)
+      - location should be in [Ascoli Piceno](province)
+      - location should be in [Asti](province)
+      - location should be in [Avellino](province)
+      - location should be in [Bari](province)
+      - location should be in [Barletta-Andria-Trani](province)
+      - location should be in [Belluno](province)
+      - location should be in [Benevento](province)
+      - location should be in [Bergamo](province)
+      - location should be in [Biella](province)
+      - location should be in [Bologna](province)
+      - location should be in [Bolzano](province)
+      - location should be in [Brescia](province)
+      - location should be in [Brindisi](province)
+      - location should be in [Cagliari](province)
+      - location should be in [Caltanissetta](province)
+      - location should be in [Campobasso](province)
+      - location should be in [Carbonia-Iglesias](province)
+      - location should be in [Caserta](province)
+      - location should be in [Catania](province)
+      - location should be in [Catanzaro](province)
+      - location should be in [Chieti](province)
+      - location should be in [Como](province)
+      - location should be in [Cosenza](province)
+      - location should be in [Cremona](province)
+      - location should be in [Crotone](province)
+      - location should be in [Cuneo](province)
+      - location should be in [Enna](province)
+      - location should be in [Fermo](province)
+      - location should be in [Ferrara](province)
+      - location should be in [Florence](province)
+      - location should be in [Foggia](province)
+      - location should be in [Forlì-Cesena](province)
+      - location should be in [Frosinone](province)
+      - location should be in [Genoa](province)
+      - location should be in [Gorizia](province)
+      - location should be in [Grosseto](province)
+      - location should be in [Imperia](province)
+      - location should be in [Isernia](province)
+      - location should be in [La Spezia](province)
+      - location should be in [L'Aquila](province)
+      - location should be in [Latina](province)
+      - location should be in [Lecce](province)
+      - location should be in [Lecco](province)
+      - location should be in [Livorno](province)
+      - location should be in [Lodi](province)
+      - location should be in [Lucca](province)
+      - location should be in [Macerata](province)
+      - location should be in [Mantua](province)
+      - location should be in [Massa and Carrara](province)
+      - location should be in [Matera](province)
+      - location should be in [Medio Campidano](province)
+      - location should be in [Messina](province)
+      - location should be in [Milan](province)
+      - location should be in [Modena](province)
+      - location should be in [Monza and Brianza](province)
+      - location should be in [Naples](province)
+      - location should be in [Novara](province)
+      - location should be in [Nuoro](province)
+      - location should be in [Ogliastra](province)
+      - location should be in [Olbia-Tempio](province)
+      - location should be in [Oristano](province)
+      - location should be in [Padua](province)
+      - location should be in [Palermo](province)
+      - location should be in [Parma](province)
+      - location should be in [Pavia](province)
+      - location should be in [Perugia](province)
+      - location should be in [Pesaro and Urbino](province)
+      - location should be in [Pescara](province)
+      - location should be in [Piacenza](province)
+      - location should be in [Pisa](province)
+      - location should be in [Pistoia](province)
+      - location should be in [Pordenone](province)
+      - location should be in [Potenza](province)
+      - location should be in [Prato](province)
+      - location should be in [Ragusa](province)
+      - location should be in [Ravenna](province)
+      - location should be in [Reggio Calabria](province)
+      - location should be in [Reggio Emilia](province)
+      - location should be in [Rieti](province)
+      - location should be in [Rimini](province)
+      - location should be in [Rome](province)
+      - location should be in [Rovigo](province)
+      - location should be in [Salerno](province)
+      - location should be in [Sassari](province)
+      - location should be in [Savona](province)
+      - location should be in [Siena](province)
+      - location should be in [Sondrio](province)
+      - location should be in [Syracuse](province)
+      - location should be in [Taranto](province)
+      - location should be in [Teramo](province)
+      - location should be in [Terni](province)
+      - location should be in [Trapani](province)
+      - location should be in [Trento](province)
+      - location should be in [Treviso](province)
+      - location should be in [Trieste](province)
+      - location should be in [Turin](province)
+      - location should be in [Udine](province)
+      - location should be in [Varese](province)
+      - location should be in [Venice](province)
+      - location should be in [Verbano-Cusio-Ossola](province)
+      - location should be in [Vercelli](province)
+      - location should be in [Verona](province)
+      - location should be in [Vibo Valentia](province)
+      - location should be in [Vicenza](province)
+      - location should be in [Viterbo](province)
+  
 
-- intent: deny
-  examples: |
-    - no
-    - n
-    - never
-    - I don't think so
-    - don't like that
-    - no way
-    - not really
+  - intent: specify_top_bottom_n
+    examples: |
+      - [top](top_bottom) [5](number) breeds
+      - Show [top](top_bottom) [5](number) breeds
+      - I want the [top](top_bottom) [5](number) breeds
+      - [top](top_bottom) [5](number)
 
-- intent: mood_great
-  examples: |
-    - perfect
-    - great
-    - amazing
-    - feeling like a king
-    - wonderful
-    - I am feeling very good
-    - I am great
-    - I am amazing
-    - I am going to save the world
-    - super stoked
-    - extremely good
-    - so so perfect
-    - so good
-    - so perfect
+  - intent: get_animal_info
+    examples: |
+      - What information do you have on animal [12345](animal_id)?
+      - Show me details about the animal with ID [67890](animal_id).
 
-- intent: mood_unhappy
-  examples: |
-    - my day was horrible
-    - I am sad
-    - I don't feel very well
-    - I am disappointed
-    - super sad
-    - I'm so sad
-    - sad
-    - very sad
-    - unhappy
-    - not good
-    - not very good
-    - extremly sad
-    - so saad
-    - so sad
-
-- intent: bot_challenge
-  examples: |
-    - are you a bot?
-    - are you a human?
-    - am I talking to a bot?
-    - am I talking to a human?
-
-- intent: get_animal_info
-  examples: |
-    - What information do you have on animal [12345](AnimalId)?
-    - Show me details about the animal with ID [67890](AnimalId).
-    - Tell me more about animal ID [54321](AnimalId).
-
-- intent: get_breeding_info
-  examples: |
-    - What are the breed details for animal [12345](AnimalId)?
-    - Show the genetic information for [AnimalId: 67890](AnimalId).
-    - Provide breeding info for animal [54321](AnimalId).
-
-- intent: get_age
-  examples: |
-    - How old is the animal with ID [12345](AnimalId)?
-    - What is the age of [67890](AnimalId)?
-    - Tell me the age of animal [54321](AnimalId).
-
-- intent: get_regional_data
-  examples: |
-    - Show data for animals in province [Rome](siglaProvincia).
-    - What information is available for ISTAT code [001](codiceIstat)?
-    - Get regional data for province [Naples](siglaProvincia).
-
-
+  - intent: bot_challenge
+    examples: |
+      - are you a bot?
+      - are you a human?
+      - am I talking to a bot?
+      - am I talking to a human?

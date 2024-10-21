@@ -5,6 +5,9 @@ import pandas as pd
 import glob
 import os
 import zipfile
+import matplotlib.pyplot as plt
+import base64
+from io import BytesIO
 
 # Dataset path
 BREED_MAPPING_FILE = "/home/kosgei/dev/personal/chatbots/livestock_chatbox/rasa/datasets/breed_mapping.csv"
@@ -23,7 +26,7 @@ class ActionGetAnimalInfo(Action):
             tracker: Tracker,
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
 
-        animal_id = tracker.get_slot("AnimalId")
+        animal_id = tracker.get_slot("animal_id")
         animal_df = load_animal_registry_data(ANIMAL_REGISTRY_DIR)
 
         if animal_id:
@@ -62,13 +65,17 @@ class ActionGetAge(Action):
             tracker: Tracker,
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
 
-        animal_id = tracker.get_slot("AnimalId")
+        animal_id = tracker.get_slot("animal_id")
+        animal_df = load_animal_registry_data(ANIMAL_REGISTRY_DIR)
         if animal_id:
-            animal_data = df[df["idAnimale"] == animal_id]
+            animal_data = animal_df[animal_df["Animal ID"] == animal_id]
             if not animal_data.empty:
-                birth_date = pd.to_datetime(animal_data.iloc[0]["DataNascita"])
-                current_age = pd.Timestamp.now().year - birth_date.year
-                dispatcher.utter_message(text=f"The animal with ID {animal_id} is {current_age} years old.")
+                birth_date = pd.to_datetime(animal_data.iloc[0]["Date Of Birth"])
+                current_date = pd.Timestamp.now()
+                age_in_months = (current_date.year - birth_date.year) * 12 + (current_date.month - birth_date.month)
+                message = f"The animal with ID {animal_id} was born on {birth_date.date()} and is currently {age_in_months} month(s) old."
+                dispatcher.utter_message(text=message)
+
             else:
                 dispatcher.utter_message(text="No data found for the given animal ID.")
         else:
@@ -77,52 +84,100 @@ class ActionGetAge(Action):
         return []
 
 
-class ActionGetRegionalData(Action):
+class ActionProvideBreedDistribution(Action):
 
     def name(self) -> Text:
-        return "action_get_regional_data"
+        return "action_provide_breed_distribution"
 
     def run(self, dispatcher: CollectingDispatcher,
             tracker: Tracker,
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
 
-        # Example logic to fetch regional data based on entities
-        codice_istat = tracker.get_slot("codiceIstat")
-        sigla_provincia = tracker.get_slot("siglaProvincia")
+        species = tracker.get_slot('species')
 
-        # Implement your logic to retrieve regional data here
-        if codice_istat and sigla_provincia:
-            # Replace the following line with actual data fetching logic
-            data = f"Regional data for ISTAT code {codice_istat} in {sigla_provincia}"
-            dispatcher.utter_message(text=data)
+        animal_df = load_animal_registry_data(ANIMAL_REGISTRY_DIR)
+
+        if not animal_df.empty:
+            # Normalize species data by stripping whitespace and converting to lowercase
+            animal_df['species'] = animal_df['species'].str.strip().str.lower()
+            species = species.strip().lower()
+
+            # Filter the DataFrame by the specified species
+            filtered_df = animal_df[animal_df['species'] == species]
+
+            if filtered_df.empty:
+                dispatcher.utter_message(text="Unable to generated breed distribution. No data found for "+species)
+            else:
+
+                breed_percentage = filtered_df['Breed'].value_counts(normalize=True) * 100
+                # Convert to HTML table
+                # html_table = breed_percentage.to_frame(name='Percentage').to_html(classes='table table-bordered',
+                #                                                                   header=True, index=True)
+                # Plotting the pie chart
+
+                # Show top 10 breeds if there are more than 10, otherwise show all
+
+                message = 'Breed distribution (all breeds)'
+
+                if len(breed_percentage) > 10:
+                    message = 'There are too many breeds. For readability, only the top 10 breeds are displayed'
+                    breed_percentage = breed_percentage.head(10)
+
+                plt.figure(figsize=(8, 8))
+                plt.pie(
+                    breed_percentage,
+                    labels=breed_percentage.index,
+                    autopct='%1.1f%%',
+                    startangle=140,
+                    wedgeprops={'edgecolor': 'black'}
+                )
+                plt.title('Breed Distribution')
+
+
+                # Save the plot to a BytesIO object
+                img_buffer = BytesIO()
+                plt.savefig(img_buffer, format='png')
+                plt.close()
+
+                # Convert the BytesIO object to a base64 string
+                img_buffer.seek(0)
+                img_base64 = base64.b64encode(img_buffer.read()).decode('utf-8')
+                # Create the HTML image tag
+                html_img_tag = f'{message} <br/><br/><img src="data:image/png;base64,{img_base64}" alt="Breed Distribution">'
+
+                dispatcher.utter_message(text=html_img_tag)
         else:
-            dispatcher.utter_message(text="I couldn't find regional data for the provided details.")
+            dispatcher.utter_message(text="Unable to generated breed distribution")
 
         return []
 
 
-class ActionGetBreedingInfo(Action):
+class ActionShowSpecies(Action):
 
     def name(self) -> Text:
-        return "action_get_breeding_info"
+        return "action_show_species"
 
     def run(self, dispatcher: CollectingDispatcher,
             tracker: Tracker,
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
 
-        # Example logic to fetch breeding information based on slots
-        codice_specie_aia = tracker.get_slot("codiceSpecieAIA")
-        codice_razza_aia = tracker.get_slot("codiceRazzaAIA")
+        animal_df = load_animal_registry_data(ANIMAL_REGISTRY_DIR)
 
-        # Implement your logic to retrieve breeding information here
-        if codice_specie_aia and codice_razza_aia:
-            # Replace this line with actual data fetching logic
-            breeding_info = f"Breeding information for species code {codice_specie_aia} and breed code {codice_razza_aia}."
-            dispatcher.utter_message(text=breeding_info)
+        if not animal_df.empty:
+            unique_breeds = animal_df['species'].unique()
+
+            # Formatting the unique breeds as an HTML unordered list
+            html_breed_list = "<ul>" + "".join([f"<li>{species}</li>" for species in unique_breeds]) + "</ul>"
+
+            message  = "Which species would you like to see the breed distribution for?" + html_breed_list
+            dispatcher.utter_message(text=message)
         else:
-            dispatcher.utter_message(text="I couldn't find breeding information for the provided details.")
+            dispatcher.utter_message(text="Unable to show breeds")
 
         return []
+
+
+
 
 
 def load_animal_registry_data(path):
@@ -239,5 +294,8 @@ def load_animal_registry_data(path):
 
     # Rename the columns using the mapping dictionary
     animal_df.rename(columns=mapping_dict, inplace=True)
+
+    # Remove rows where 'species' is NaN
+    animal_df = animal_df.dropna(subset=['species'])
 
     return animal_df

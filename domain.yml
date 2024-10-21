@@ -1,80 +1,67 @@
 version: "3.1"
 
 intents:
-  - greet
-  - goodbye
-  - affirm
-  - deny
-  - mood_great
-  - mood_unhappy
   - bot_challenge
   - get_animal_info
-  - get_breeding_info
-  - get_age
-  - get_regional_data
+  - request_breed_distribution
+  - specify_species
+  - specify_province
+  - specify_top_bottom_n
 
 entities:
-  - AnimalId
-  - codiceIstat
-  - siglaProvincia
-  - codiceSpecieAIA
-  - codiceRazzaAIA
+  - animal_id
+  - species
+  - province
+  - top_bottom
+  - number
 
 slots:
-  AnimalId:
+  animal_id:
     type: text
     influence_conversation: false
     mappings:
       - type: from_entity
-        entity: AnimalId
+        entity: animal_id
 
-  codiceIstat:
+  species:
     type: text
     influence_conversation: false
     mappings:
       - type: from_entity
-        entity: codiceIstat
+        entity: species
 
-  siglaProvincia:
+  province:
     type: text
     influence_conversation: false
     mappings:
       - type: from_entity
-        entity: siglaProvincia
+        entity: province
 
-  codiceSpecieAIA:
+  top_bottom:
     type: text
     influence_conversation: false
     mappings:
       - type: from_entity
-        entity: codiceSpecieAIA
+        entity: top_bottom
 
-  codiceRazzaAIA:
+  number:
     type: text
-    influence_conversation: false
     mappings:
       - type: from_entity
-        entity: codiceRazzaAIA
+        entity: number
+
+
+#forms:
+#  breed_distribution_form:
+#    required_slots:
+#      - species
+#      - province
+#      - top_bottom
+#      - number
 
 responses:
-  utter_greet:
-  - text: "Hey! How are you?"
-
-  utter_cheer_up:
-  - text: "Here is something to cheer you up:"
-    image: "https://i.imgur.com/nGF1K8f.jpg"
-
-  utter_did_that_help:
-  - text: "Did that help you?"
-
-  utter_happy:
-  - text: "Great, carry on!"
-
-  utter_goodbye:
-  - text: "Bye"
-
   utter_iamabot:
-  - text: "I am a bot, powered by Rasa."
+    - text: "I am a bot, powered by Rasa."
 
   utter_ask_animal_id:
     - text: "Please provide the Animal ID."
@@ -85,12 +72,36 @@ responses:
   utter_no_data_found:
     - text: "Sorry, I couldn't find any data for the given criteria."
 
+  utter_ask_distribution:
+    - text: "I can help with breed distribution. Would you like to see it by species, province, or both?"
+
+  utter_ask_species:
+    - text: "Which species would you like to see the breed distribution for? For example: <ul><li>Cattle</li><li>Sheep</li><li>Goats</li></ul>"
+
+  utter_ask_province:
+    - text: "Would you like to filter the breed distribution by a specific province or region? If so, please specify."
+
+  utter_ask_top_bottom_n:
+    - text: "Do you want to see the top or bottom N breeds? For example, you could request the top 5 or bottom 3."
+
+  utter_provide_breed_distribution:
+    - text: "Here is the breed distribution for {species} in {province}: {breed_distribution}"
+    - text: "Based on your request, here is the {top_bottom} {number} breed distribution for {species} in {province}."
+
+  utter_no_data_available:
+    - text: "I couldn't find any data for the specified species and province. Please try another combination."
+
+  utter_invalid_input:
+    - text: "It seems like the input was not recognized. Could you please specify the species, province, or number of breeds?"
+
+  utter_general_help:
+    - text: "You can ask for breed distribution by saying something like, 'Show me the breed distribution for cattle in Texas,' or 'Give me the top 5 breeds in Nairobi.'"
+
 
 actions:
   - action_get_animal_info
-  - action_get_age
-  - action_get_regional_data
-  - action_get_breeding_info
+  - action_provide_breed_distribution
+  - action_show_species
 
 session_config:
   session_expiration_time: 60
