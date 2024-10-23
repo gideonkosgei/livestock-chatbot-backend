@@ -12,7 +12,7 @@ from io import BytesIO
 # Dataset path
 BREED_MAPPING_FILE = "/home/kosgei/dev/personal/chatbots/livestock_chatbox/rasa/datasets/breed_mapping.csv"
 TRANSLATION_FILE = "/home/kosgei/dev/personal/chatbots/livestock_chatbox/rasa/datasets/translations.csv"
-PROVINCE_MAPPING_FILE =  "/home/kosgei/dev/personal/chatbots/livestock_chatbox/rasa/datasets/provinces_mapping.csv"
+PROVINCE_MAPPING_FILE = "/home/kosgei/dev/personal/chatbots/livestock_chatbox/rasa/datasets/provinces_mapping.csv"
 SPECIES_MAPPING_FILE = "/home/kosgei/dev/personal/chatbots/livestock_chatbox/rasa/datasets/species_mapping.csv"
 ANIMAL_REGISTRY_DIR = "/home/kosgei/dev/personal/chatbots/livestock_chatbox/rasa/datasets/animal_registry/"
 
@@ -106,7 +106,7 @@ class ActionProvideBreedDistribution(Action):
             filtered_df = animal_df[animal_df['species'] == species]
 
             if filtered_df.empty:
-                dispatcher.utter_message(text="Unable to generated breed distribution. No data found for "+species)
+                dispatcher.utter_message(text="Unable to generated breed distribution. No data found for " + species)
             else:
 
                 breed_percentage = filtered_df['Breed'].value_counts(normalize=True) * 100
@@ -132,7 +132,6 @@ class ActionProvideBreedDistribution(Action):
                     wedgeprops={'edgecolor': 'black'}
                 )
                 plt.title('Breed Distribution')
-
 
                 # Save the plot to a BytesIO object
                 img_buffer = BytesIO()
@@ -169,7 +168,7 @@ class ActionShowSpecies(Action):
             # Formatting the unique breeds as an HTML unordered list
             html_breed_list = "<ul>" + "".join([f"<li>{species}</li>" for species in unique_breeds]) + "</ul>"
 
-            message  = "Which species would you like to see the breed distribution for?" + html_breed_list
+            message = "Which species would you like to see the breed distribution for?" + html_breed_list
             dispatcher.utter_message(text=message)
         else:
             dispatcher.utter_message(text="Unable to show breeds")
@@ -177,9 +176,74 @@ class ActionShowSpecies(Action):
         return []
 
 
+class ActionShowInseminationTrends(Action):
 
+    def name(self) -> Text:
+        return "action_show_insemination_trends"
 
+    def run(self, dispatcher: CollectingDispatcher,
+            tracker: Tracker,
+            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+        dispatcher.utter_message(text="insemination trends")
 
+        return []
+class ActionShowInseminationTrends(Action):
+
+    def name(self) -> Text:
+        return "action_show_insemination_trends"
+
+    def run(self, dispatcher: CollectingDispatcher,
+            tracker: Tracker,
+            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+        dispatcher.utter_message(text="insemination trends")
+
+        return []
+
+class ActionShowConceptionTrends(Action):
+
+    def name(self) -> Text:
+        return "action_show_conception_trends"
+
+    def run(self, dispatcher: CollectingDispatcher,
+            tracker: Tracker,
+            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+        dispatcher.utter_message(text="conception trends")
+
+        return []
+class ActionShowCalvingTrends(Action):
+
+    def name(self) -> Text:
+        return "action_show_calving_trends"
+
+    def run(self, dispatcher: CollectingDispatcher,
+            tracker: Tracker,
+            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+        dispatcher.utter_message(text="calvinf trends")
+
+        return []
+class ActionShowAbortionTrends(Action):
+
+    def name(self) -> Text:
+        return "action_show_abortion_trends"
+
+    def run(self, dispatcher: CollectingDispatcher,
+            tracker: Tracker,
+            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+        dispatcher.utter_message(text="Abortion trends")
+
+        return []
+
+class ActionShowTHITrends(Action):
+
+    def name(self) -> Text:
+        return "action_show_thi_effects"
+
+    def run(self, dispatcher: CollectingDispatcher,
+            tracker: Tracker,
+            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+        dispatcher.utter_message(text="THI trends")
+
+        return []
 def load_animal_registry_data(path):
     # Use glob to find all zip files in the specified directory
     zip_files = glob.glob(os.path.join(ANIMAL_REGISTRY_DIR, "*.zip"))
@@ -280,7 +344,7 @@ def load_animal_registry_data(path):
 
     # Merge to get province name
     animal_df = animal_df.merge(
-        species_mappings[['code', 'species','species_category']],
+        species_mappings[['code', 'species', 'species_category']],
         left_on=['codiceSpecieAIA'],
         right_on=['code'],
         how='left'
@@ -288,8 +352,9 @@ def load_animal_registry_data(path):
 
     # Drop the duplicate/unwanted columns
     animal_df.drop(
-        ['BreedAIACode', 'BreedAIACode_x', 'BreedAIACode_y', 'BreedCodeAIASpecies', 'RazzaSoggetto', 'Specie','codiceIstat',
-         'RazzaMadreGenetica', 'RazzaPadre', 'anno', 'mese', 'giorno','abbreviation','code'],
+        ['BreedAIACode', 'BreedAIACode_x', 'BreedAIACode_y', 'BreedCodeAIASpecies', 'RazzaSoggetto', 'Specie',
+         'codiceIstat',
+         'RazzaMadreGenetica', 'RazzaPadre', 'anno', 'mese', 'giorno', 'abbreviation', 'code'],
         axis=1, inplace=True)
 
     # Rename the columns using the mapping dictionary

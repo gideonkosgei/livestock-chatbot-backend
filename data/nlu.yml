@@ -9,6 +9,48 @@ nlu:
       - What is the breed distribution?
       - Show me the distribution of breeds.
       - How are the breeds distributed?
+      - Display the breed distribution data
+      - Show a chart of the breed distribution
+      - Provide a graph showing the distribution of different breeds
+      - What is the current breed distribution?
+      - Can you show the breed distribution statistics?
+      - Visualize the distribution of breeds for me
+      - I need a breakdown of breed distribution
+      - Show breed distribution across all categories
+      - How are the different breeds distributed?
+      - Display a summary of breed distribution
+      - Provide an overview of breed distribution
+      - Show the data on how breeds are distributed
+      - Give me the breed distribution details
+      - Can you show me a report on breed distribution?
+      - Display the distribution figures for different breeds
+
+  - intent: show_insemination
+    examples: |
+      - Show trend of insemination for each species category month by month for species using a line graph
+      - show insemination distribution
+      - show trends in insemination
+      - how the monthly insemination trends for all species in a line chart
+      - Display insemination statistics for each species by month
+      - Show insemination patterns across different species categories
+      - Provide a graph of insemination data for various species over time
+      - Display a line graph for insemination trends by species
+      - Visualize insemination figures over the past months
+      - Give an overview of insemination rates for all species
+      - Show how insemination varies month by month for each species
+      - Display a monthly breakdown of insemination trends per species
+      - Show a line graph of insemination numbers per species category
+      - Display monthly insemination statistics for each species in a line graph
+      - Show the variation in insemination numbers across different species categories
+      - Provide a graph showing insemination rates for each species month by month
+      - Show a comparison of insemination data for various species over the months
+      - Visualize the monthly insemination figures by species with a line graph
+      - Show the month-by-month insemination statistics for all species categories
+      - Display the monthly insemination distribution trends across all species
+      - Provide a line chart showing insemination rates for each species over time
+      - Show how insemination counts fluctuate for different species month by month
+      - Visualize the monthly change in insemination rates for each species category
+
 
   - intent: specify_species
     examples: |
@@ -132,7 +174,7 @@ nlu:
       - location should be in [Vibo Valentia](province)
       - location should be in [Vicenza](province)
       - location should be in [Viterbo](province)
-  
+
 
   - intent: specify_top_bottom_n
     examples: |
@@ -152,3 +194,95 @@ nlu:
       - are you a human?
       - am I talking to a bot?
       - am I talking to a human?
+
+  - intent: show_conception_rates
+    examples: |
+      - Show the conception rate and fertility rate month by month in a line graph
+      - Display a line graph of monthly pregnancy rates and successful conception percentages
+      - Show month-by-month trends in conception rates and fertility rates
+      - Visualize monthly trends in successful conception percentage with a line graph
+      - Provide a line graph of conception rates, fertility rates, and pregnancy rates over the months
+      - Show the conception rate and conception success rate for each month in a line graph
+      - Display a line graph showing monthly conception and fertility rates
+      - Show the trend of conception and pregnancy rates month by month
+      - Visualize the conception success rate and fertility data over the months in a line graph
+      - Show the comparison of monthly conception rates and pregnancy success rates with a line graph
+      - Display a line graph showing the trend of fertility rates alongside conception success percentages
+      - Visualize the changes in conception and fertility rates for each month with a graph
+      - Show the effect of monthly trends on conception rates and fertility rates
+      - Display a graph comparing conception success percentages and pregnancy rates month by month
+      - Provide a line graph of conception rates and successful conception percentages over different months
+      - Visualize the monthly variation in fertility rates and conception success rates using a line graph
+      - Show the trends of monthly conception and pregnancy rates over time with a line graph
+      - Display a line graph that highlights the relationship between conception rates and fertility rates each month
+      - Show month-by-month changes in conception success percentages and fertility rates with a line graph
+      
+  - intent: show_calving_rates
+    examples: |
+      - Show the calving rates and parturition rates month by month in a line graph
+      - Display a line graph of monthly calving and parturition rates
+      - Show month-by-month trends in calving rates
+      - Visualize monthly trends in parturition rates with a line graph
+      - Provide a line graph of calving rates over the months
+      - Show the calving rate and parturition rate for each month in a line graph
+      - Display a line graph showing monthly calving and parturition rates
+      - Show the trend of calving and parturition rates month by month
+      - Visualize the calving rate data over the months in a line graph
+      - Display a line graph comparing calving rates and parturition rates month by month
+      - Show the monthly fluctuations in calving rates and parturition rates with a line graph
+      - Display a line graph that illustrates trends in calving rates over the months
+      - Provide a graph comparing calving rates and parturition rates over different months
+      - Show the relationship between monthly calving rates and parturition rates using a line graph
+      - Visualize the month-by-month variations in parturition rates with a line graph
+      - Display a line graph highlighting the changes in calving and parturition rates over time
+      - Show the effect of monthly trends on calving rates and parturition rates
+      - Provide a line graph that shows calving rates compared to parturition rates for each month
+      - Visualize the monthly distribution of calving rates and parturition rates
+      - Display a graph comparing calving rate data and parturition rate data by month
+
+  - intent: show_abortion_rates
+    examples: |
+      - Show the abortion rates and miscarriage rates month by month in a line graph
+      - Display a line graph of monthly abortion and pregnancy loss rates
+      - Show month-by-month trends in abortion and miscarriage rates
+      - Visualize monthly trends in abortion rates with a line graph
+      - Provide a line graph of abortion rates and pregnancy loss rates over the months
+      - Show the abortion rate and miscarriage rate for each month in a line graph
+      - Display a line graph showing monthly abortion and pregnancy loss rates
+      - Show the trend of abortion and miscarriage rates month by month
+      - Visualize the abortion rate data over the months in a line graph
+      - Display a line graph comparing abortion rates and pregnancy loss rates month by month
+      - Show how abortion rates and miscarriage rates change over time in a line graph
+      - Display a graph showing abortion rates and pregnancy loss rates by month
+      - Visualize the monthly changes in abortion rates with a trend line
+      - Provide a line graph to compare abortion and pregnancy loss rates over different months
+      - Show the monthly progression of abortion rates and miscarriage rates
+      - Display a line graph depicting the abortion rate and pregnancy loss rate trends over the months
+      - Visualize abortion rate trends alongside pregnancy loss rates for each month
+      - Show the comparison of abortion rates and miscarriage rates across different months in a line graph
+      - Provide a month-by-month analysis of abortion rates and pregnancy loss rates using a line graph
+      - Show the fluctuation in abortion rates and miscarriage rates throughout the months with a line graph
+
+  - intent: show_thi_effects
+    examples: |
+      - Show the effect of THI on milk production for different species
+      - Display a graph showing the impact of THI on milk yield by species
+      - Visualize the relationship between THI and milk production for each species
+      - Show how THI variations affect milk production across species categories
+      - Provide a line graph of THI against milk production by species
+      - Display the impact of temperature and humidity on milk yield for various species
+      - Show the trend of THI and its effect on milk production in different species
+      - Display a graph showing milk production changes by species under different THI levels
+      - Show the correlation between THI and milk yield across species categories
+      - Visualize the monthly effect of THI on milk production by species
+      - Display the impact of the Temperature-Humidity Index on milk yield for various species
+      - Show the monthly changes in milk production by species due to the THI index
+      - Display a line graph comparing the effects of THI on milk production in different species
+      - Visualize how fluctuations in the Temperature-Humidity Index affect milk yield across species
+      - Show the species-wise impact of THI variations on milk production
+      - Provide a graph showing milk yield trends influenced by the THI index for each species
+      - Show the relationship between THI index levels and milk yield by species
+      - Display the effect of increasing THI levels on milk production in different species
+      - Visualize species-specific milk production trends under different THI conditions
+      - Show the impact of varying THI index values on milk yield across multiple species
+      - Provide a comparison of milk production rates by species under different THI conditions

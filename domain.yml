@@ -7,6 +7,11 @@ intents:
   - specify_species
   - specify_province
   - specify_top_bottom_n
+  - show_insemination
+  - show_conception_rates
+  - show_calving_rates
+  - show_abortion_rates
+  - show_thi_effects
 
 entities:
   - animal_id
@@ -102,6 +107,11 @@ actions:
   - action_get_animal_info
   - action_provide_breed_distribution
   - action_show_species
+  - action_show_insemination_trends
+  - action_show_conception_trends
+  - action_show_calving_trends
+  - action_show_abortion_trends
+  - action_show_thi_effects
 
 session_config:
   session_expiration_time: 60

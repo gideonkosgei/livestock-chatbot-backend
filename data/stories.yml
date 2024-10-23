@@ -1,26 +1,57 @@
 version: "3.1"
 
 stories:
-- story: get animal information
-  steps:
-    - intent: get_animal_info
-    - action: action_get_animal_info
+  - story: get animal information
+    steps:
+      - intent: get_animal_info
+      - action: action_get_animal_info
 
-- story: User requests breed distribution with species and province
-  steps:
-  - intent: request_breed_distribution
-  - action: action_show_species
-  - intent: specify_species
-    entities:
-    - species:
-#  - action: utter_ask_province
-#  - intent: specify_province
-#    entities:
-#    - province:
-#  - action: utter_ask_top_bottom_n
-#  - intent: specify_top_bottom_n
-#    entities:
-#    - top_bottom:
-#    - number:
-  - action: action_provide_breed_distribution
+  - story: User requests breed distribution with species and province
+    steps:
+      - intent: request_breed_distribution
+      - action: action_show_species
+      - intent: specify_species
+        entities:
+          - species:
+      #  - action: utter_ask_province
+      #  - intent: specify_province
+      #    entities:
+      #    - province:
+      #  - action: utter_ask_top_bottom_n
+      #  - intent: specify_top_bottom_n
+      #    entities:
+      #    - top_bottom:
+      #    - number:
+      - action: action_provide_breed_distribution
+
+
+  - story: User requests insemination trends
+    steps:
+      - intent: show_insemination
+      - action: action_show_insemination_trends
+
+  - story: User requests conception trends
+    steps:
+      - intent: show_conception_rates
+      - action: action_show_conception_trends
+
+  - story: User requests calving trends
+    steps:
+      - intent: show_calving_rates
+      - action: action_show_calving_trends
+
+  - story: User requests abortion trends
+    steps:
+      - intent: show_abortion_rates
+      - action: action_show_abortion_trends
+
+  - story: User requests thi effects
+    steps:
+      - intent: show_thi_effects
+      - action: action_show_thi_effects
+
+
+
+
+
 
